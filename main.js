@@ -21,11 +21,14 @@ async function getMovies(url) {
 }
 
 function showMovies(movies) {
-    main.innerHTML = "";
+    main.innerHTML = ""; // clears content
+    //iterates through movies using movie as element
     movies.forEach((movie) => {
-    const { poster_path, title, vote_average, overview } = movie;
-    const movieEl = document.createElement("div");
-    movieEl.classList.add("movie");
+    const { poster_path, title, vote_average, overview } = movie; // creates variables and copies attributes
+    const movieEl = document.createElement("div"); // creates a new <div></div>
+    movieEl.classList.add("movie"); //adds CSS movie class to newly made element
+
+    //inserting data into the new element with the movie class
     movieEl.innerHTML = `
     <img src="${IMGPATH + poster_path} "alt="${title}"/> 
     <div class="movie-info">
@@ -37,6 +40,21 @@ function showMovies(movies) {
         ${overview}
     </div>
     `;
+    //appends newly created movie element <div></div> and makes it a child of main content
     main.appendChild(movieEl);
     });
+    }
+
+
+    //sets the color depending on the vote
+    function getClassByRate(vote) {
+        if(vote >= 8) {
+            return  "green";
+        }
+        else if(vote >= 5) {
+            return "orange";
+        }
+        else {
+            return "red";
+        }
     }
