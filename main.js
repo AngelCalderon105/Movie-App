@@ -12,25 +12,26 @@ const search = document.getElementById("search");
 
 getMovies(APIURL);
 
+//async is a promise
 async function getMovies(url) {
 
-    const response = await fetch(url);
-    const data = await response.json();
-    console.log(data);
-    showMovies(data.results);
+    const response = await fetch(url); //awaits the url
+    const data = await response.json(); //awaits the response
+    console.log(data); //logs the data to the console
+    showMovies(data.results); // sends data into showMovies function to get iterates through
 }
 
 function showMovies(movies) {
     main.innerHTML = ""; // clears content
     //iterates through movies using movie as element
-    movies.forEach((movie) => {
-    const { poster_path, title, vote_average, overview } = movie; // creates variables and copies attributes
+    movies.forEach(movie => {
+    const { poster_path, title,overview, vote_average } = movie; // creates variables and copies attributes
     const movieEl = document.createElement("div"); // creates a new <div></div>
     movieEl.classList.add("movie"); //adds CSS movie class to newly made element
 
     //inserting data into the new element with the movie class
     movieEl.innerHTML = `
-    <img src="${IMGPATH + poster_path} "alt="${title}"/> 
+    <img src="${IMGPATH + poster_path} "alt="${title}"> 
     <div class="movie-info">
         <h3>${title}</h3>
         <span class="${getClassByRate(vote_average)}">${vote_average}</span>
@@ -46,15 +47,30 @@ function showMovies(movies) {
     }
 
 
-    //sets the color depending on the vote
-    function getClassByRate(vote) {
-        if(vote >= 8) {
-            return  "green";
-        }
-        else if(vote >= 5) {
-            return "orange";
-        }
-        else {
-            return "red";
-        }
+//sets the color depending on the vote
+function getClassByRate(vote) {
+    if(vote >= 8) {
+        return  "green";
     }
+    else if(vote >= 5) {
+        return "orange";
+    }
+    else {
+        return "red";
+    }
+}
+
+// listens for "submit" action in form which is tied to form element
+//by either pressing ENTER or clicking submit on form
+form.addEventListener("submit", (e) => { 
+    e.preventDefault(); //prevents refreshing
+    
+    const searchTerm = search.value; //retrieves value from search input element
+    
+    //if searchItem exists
+    if (searchTerm) {
+        getMovies(SEARCHAPI + searchTerm); //retrive the movies
+        search.value = ""; //clear the search bar
+    }
+    });
+

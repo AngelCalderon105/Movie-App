@@ -42,3 +42,26 @@ h1{
     background-color: #050505;
     outline: none;
 }
+
+div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movie{
+    background-color: #373b69;
+    border-radius: 3px;
+    box-shadow: 0 4px 5px rgba(0,0,0,0.2);
+    overflow: hidden;
+    position: relative;
+    margin: 1rem;
+    justify-content: center;
+    align-items: center;
+    width: 265px;
+}
+
+/* selects img element from movie class  */
+.movie img {
+    width: 100%;
+}
+
