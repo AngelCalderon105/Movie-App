@@ -60,7 +60,7 @@ div {
     width: 265px;
 }
 
-/* selects img element from movie class  */
+/* selects img element from movie class in the app */
 .movie img {
     width: 100%;
     transform: translateY(-2%);
