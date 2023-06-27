@@ -12,18 +12,20 @@ body {
 
 header {
     background-color: #363636;
+    width: 100%;
     display:flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 h1{
-    color:whitesmoke;
+    color: whitesmoke;
     align-self: center;
-    margin-left: 28rem;
+    
 }
 
 .search{
     margin: 3rem;
-    margin-left: 12rem;
     background-color: transparent;
     border: 2px solid #e9e9ec;
     border-radius: 50px;
@@ -44,7 +46,9 @@ h1{
 }
 
 div {
+    width: 100%;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
@@ -74,7 +78,6 @@ div {
     padding: 0rem 1rem 1rem;
     letter-spacing: 0.5px;
     text-align: center;
-    /* line-height: 140%; */
 }
 
 .movie-info h3 {
@@ -119,4 +122,14 @@ div {
 
 .movie:hover .overview {
     transform: translateY(0);
+}
+
+@media screen and (max-width: 652px) {
+    .search{
+        margin: 1rem;
+    }
+
+    h1 {
+
+    }
 }
